@@ -140,6 +140,10 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
         fragmentTransaction.replace(R.id.frame, map);
         fragmentTransaction.commit();
     }
+    @Override
+    public void onDisconnected() {
+        // do something??
+    }
 
     // google play stuff
     @Override
