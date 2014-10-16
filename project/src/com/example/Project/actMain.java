@@ -19,7 +19,7 @@ import com.google.android.gms.location.LocationRequest;
 
 public class actMain extends Activity implements GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener, LocationListener,
-        fragMap.mapListener, fragNew.newmsgListener, fragMsg.msgListener {
+        fragLoad.loadListener, fragMap.mapListener, fragNew.newmsgListener, fragMsg.msgListener {
 
     // Milliseconds per second
     private static final int MILLISECONDS_PER_SECOND = 1000;
@@ -74,12 +74,14 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
         // Create a new location client, using the enclosing class to handle callbacks.
         mLocationClient = new LocationClient(this, this, this);
         // Start with updates turned off
-        mUpdatesRequested = false;
+    }
+
+    // fragment swapping and other listeners
+    @Override
+    public void started(){
         // connect
         mLocationClient.connect();
     }
-
-    // fragment swapping
     @Override
     public void openMap(){
         // create new fragment and set its challenge
@@ -129,16 +131,12 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
 
     @Override
     public void onConnected(Bundle dataBundle) {
-        // Display the connection status
-        Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
         // open the map (rewriting this code so the load fragment doesn't get added to the backstack)
-        // create new fragment
         fragMap map = new fragMap();
-
-        // create transaction and swap new fragment in
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame, map);
         fragmentTransaction.commit();
+        Toast.makeText(this, "connected", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onDisconnected() {
