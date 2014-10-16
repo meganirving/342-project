@@ -1,0 +1,22 @@
+TO DO: (in order of importance)
+. google maps displaying in map fragment
+. radius drawn on map
+. set up online database (dropbox?)
+. add messages to database (text + location)
+. view message icons on map
+. click icons to view messages
+. notifications when messages are in the radius
+. add comments to messages
+. delete own messages + comments
+
+(stretches)
+. upvote messages to change size (I'm thinking maybe just one size larger? maybe a ratio: if 50% or more votes on a comment are up, the icon is big. otherwise, it's small)
+. increase/decrease radius
+. unseen icons bounce/glow
+. add photos + drawings to messages
+. messages are shown on the map screen itself
+
+
+TO DONE:
+. app flow (going between fragments)
+. loading location services
