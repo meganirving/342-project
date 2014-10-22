@@ -1,49 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#ffffffff">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffffff"
+                android:id="@+id/relativeLayout">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="NEW MESSAGE:"
-            android:id="@+id/txtLabel"
-            android:layout_gravity="center_horizontal"
-            android:background="#ff49c8b0"
-            android:typeface="monospace"
-            android:textSize="30dp"
-            android:textColor="#ffffffff"
-            android:gravity="center_horizontal"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"/>
-
-    <Button
+    <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SAVE"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:src="@drawable/messagebg"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" SAVE "
             android:id="@+id/btnSave"
-            android:layout_gravity="center_horizontal"
-            android:singleLine="true"
-            android:textColor="#ffffffff"
-            android:typeface="monospace"
-            android:background="#ff49c8b0"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentRight="true"
+            android:background="#ff646464"
+            android:textColor="#ff49c8b0"
+            android:textSize="30dp"
+            android:typeface="monospace"/>
 
-    <Button
+    <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CANCEL"
-            android:id="@+id/btnCancel"
-            android:layout_gravity="center_horizontal"
-            android:singleLine="true"
-            android:textColor="#ffffffff"
+            android:id="@+id/edtMsg"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:hint="NEW MESSAGE..."
             android:typeface="monospace"
-            android:background="#ff49c8b0"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
-</LinearLayout>
+            android:textColor="#ff000000"
+            android:editable="true"
+            android:text="TESTMSG"/>
+
+</RelativeLayout>

@@ -21,29 +21,11 @@
             android:paddingBottom="20dp"
             android:paddingTop="20dp"/>
 
-    <Button
-            android:layout_width="wrap_content"
+    <ListView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="NEW"
-            android:id="@+id/btnNew"
+            android:id="@+id/list"
             android:layout_gravity="center_horizontal"
-            android:singleLine="true"
-            android:textColor="#ffffffff"
-            android:typeface="monospace"
-            android:background="#ff49c8b0"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
+            android:headerDividersEnabled="true"/>
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MESSAGE"
-            android:id="@+id/btnViewMsg"
-            android:layout_gravity="center_horizontal"
-            android:singleLine="true"
-            android:textColor="#ffffffff"
-            android:typeface="monospace"
-            android:background="#ff49c8b0"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
 </LinearLayout>

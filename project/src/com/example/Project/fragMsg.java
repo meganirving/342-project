@@ -7,11 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Megan on 15/10/2014.
  */
 public class fragMsg extends Fragment {
+
+    private User user;
+    private Message msg;
 
     // overload onAttach
     public void onAttach(Activity activity)
@@ -27,34 +31,60 @@ public class fragMsg extends Fragment {
         View root = inflater.inflate(R.layout.msg, container, false);
 
         // get buttons
-        Button comment = (Button) root.findViewById(R.id.btnComm);
-        Button back = (Button) root.findViewById(R.id.btnBack);
+        Button pos = (Button) root.findViewById(R.id.btnPos);
+        Button neg = (Button) root.findViewById(R.id.btnNeg);
+
+        // set text
+        TextView messageLabel = (TextView) root.findViewById(R.id.txtMsg);
+        messageLabel.setText(msg.getMessage());
 
         // set listeners
-        // TODO: actually set these up
-        comment.setOnClickListener(new View.OnClickListener() {
+        pos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // opens "new message" in comment format
-                listener.openNew(1);
+                // get the user's current vote on this message
+                int vote = user.getVote(msg.getID());
+                if (vote == 0) {
+                    // add vote
+                    user.addVote(msg.getID(), 1);
+                    listener.voteOnMsg(true, msg);
+                } else if (vote == -1) {
+                    // update vote
+                    user.changeVote(msg.getID(), 1);
+                    listener.voteOnMsg(true, msg);
+                }
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
+        neg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // just goes back to map
-                listener.openMap();
+                // get the user's current vote on this message
+                int vote = user.getVote(msg.getID());
+                // if they haven't voted, or only voted positively
+                if (vote == 0) {
+                    // add vote
+                    user.addVote(msg.getID(), -1);
+                    listener.voteOnMsg(false, msg);
+                } else if (vote == 1) {
+                    // update vote
+                    user.changeVote(msg.getID(), -1);
+                    listener.voteOnMsg(false, msg);
+                }
             }
         });
-
 
         return root;
     }
 
+    // sets the user and message data
+    public void setData(User newUser, Message newMsg) {
+        user = newUser;
+        msg = newMsg;
+    }
+
     // for interacting with the parent activity
     public interface msgListener{
-        public void openNew(int type);
-        public void openMap();
+        public void voteOnMsg(boolean vote, Message msg);
     }
     private msgListener listener;
 }
