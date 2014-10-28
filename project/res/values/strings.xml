@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Project</string>
+    <string name="app_name">.TAGIFY</string>
+    <string name="action_add">Add Tag</string>
+    <string name="action_sett">Settings</string>
 </resources>

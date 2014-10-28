@@ -9,6 +9,8 @@ import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -42,6 +44,14 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
     /**
      * Called when the activity is first created.
      */
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +68,8 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
         // inflate the loading page & add to container
         FragmentTransaction fragTransaction = getFragmentManager().beginTransaction();
         fragLoad loading = new fragLoad();
+     //   fragMap map = new fragMap();
+      //  fragTransaction.add(R.id.map, map);
         fragTransaction.add(R.id.frame, loading);
         fragTransaction.commit();
 

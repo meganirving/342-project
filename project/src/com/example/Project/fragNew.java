@@ -31,7 +31,7 @@ public class fragNew extends Fragment {
         root = inflater.inflate(R.layout.newmsg, container, false);
 
         // get buttons
-        Button save = (Button) root.findViewById(R.id.btnSave);
+     /*   Button save = (Button) root.findViewById(R.id.btnSave);
         Button cancel = (Button) root.findViewById(R.id.btnCancel);
 
         // set listeners
@@ -51,7 +51,7 @@ public class fragNew extends Fragment {
 
         // set the label
         setLabel();
-
+*/
         return root;
     }
 

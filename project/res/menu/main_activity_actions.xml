@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/plus"
+          android:title="@string/action_add"
+          android:showAsAction="ifRoom" />
+
+    <item android:id="@+id/setting_con"
+          android:icon="@drawable/settingsicon"
+          android:title="@string/action_sett"
+          android:showAsAction="ifRoom" />
+
+
+</menu>
