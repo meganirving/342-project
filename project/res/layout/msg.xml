@@ -1,50 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ffffffff">
 
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:src="@drawable/messagebg"
+            />
+
     <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="MESSAGE:"
-            android:id="@+id/textView"
+            android:id="@+id/txtMsg"
             android:layout_gravity="center_horizontal"
-            android:background="#ff49c8b0"
             android:typeface="monospace"
             android:textSize="30dp"
-            android:textColor="#ffffffff"
+            android:textColor="#ff000000"
             android:gravity="center_horizontal"
             android:paddingBottom="20dp"
-            android:paddingTop="20dp"/>
+            android:paddingTop="20dp"
+            android:layout_centerInParent="true"
+            />
 
     <Button
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="COMMENT"
-            android:id="@+id/btnComm"
-            android:layout_gravity="center_horizontal"
-            android:singleLine="false"
-            android:textColor="#ffffffff"
-            android:typeface="monospace"
-            android:background="#ff49c8b0"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
+            android:text="+"
+            android:id="@+id/btnPos"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentRight="true"
+            android:background="#ff646464"
+            android:textColor="#ff49c8b0"
+            android:textSize="30dp"/>
 
     <Button
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BACK"
-            android:id="@+id/btnBack"
-            android:layout_gravity="center_horizontal"
-            android:singleLine="false"
-            android:textColor="#ffffffff"
-            android:typeface="monospace"
-            android:background="#ff49c8b0"
-            android:padding="5dp"
-            android:layout_margin="5dp"/>
+            android:text="-"
+            android:id="@+id/btnNeg"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentRight="false"
+            android:background="#ff646464"
+            android:textColor="#ff49c8b0"
+            android:textSize="30dp"
+            android:layout_alignParentLeft="true"/>
 
-</LinearLayout>
+</RelativeLayout>

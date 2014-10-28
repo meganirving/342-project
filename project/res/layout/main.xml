@@ -6,6 +6,5 @@
               android:background="#ffffffff"
               android:id="@+id/frame"
               android:longClickable="false">
-
 </LinearLayout>
 
