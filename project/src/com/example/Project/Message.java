@@ -26,11 +26,7 @@ public class Message {
     public String toString() { return message; }
 
     // update score
-    public void updateScore(boolean positive) {
-        if (positive) {
-            score++;
-        } else {
-            score--;
-        }
+    public void updateScore(int newScore) {
+        score += newScore;
     }
 }

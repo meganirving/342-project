@@ -45,13 +45,17 @@ public class fragMsg extends Fragment {
                 // get the user's current vote on this message
                 int vote = user.getVote(msg.getID());
                 if (vote == 0) {
-                    // add vote
+                    // haven't voted yet, add vote
                     user.addVote(msg.getID(), 1);
-                    listener.voteOnMsg(true, msg);
+                    listener.voteOnMsg(1, msg, user);
                 } else if (vote == -1) {
-                    // update vote
+                    // voted on this message in the other direction, update
                     user.changeVote(msg.getID(), 1);
-                    listener.voteOnMsg(true, msg);
+                    listener.voteOnMsg(2, msg, user);
+                } else {
+                    // voted on this message before, reset vote
+                    user.changeVote(msg.getID(), 0);
+                    listener.voteOnMsg(-1, msg, user);
                 }
             }
         });
@@ -60,15 +64,18 @@ public class fragMsg extends Fragment {
             public void onClick(View v) {
                 // get the user's current vote on this message
                 int vote = user.getVote(msg.getID());
-                // if they haven't voted, or only voted positively
                 if (vote == 0) {
                     // add vote
                     user.addVote(msg.getID(), -1);
-                    listener.voteOnMsg(false, msg);
+                    listener.voteOnMsg(-1, msg, user);
                 } else if (vote == 1) {
                     // update vote
                     user.changeVote(msg.getID(), -1);
-                    listener.voteOnMsg(false, msg);
+                    listener.voteOnMsg(-2, msg, user);
+                } else {
+                    // reset vote
+                    user.changeVote(msg.getID(), 0);
+                    listener.voteOnMsg(1, msg, user);
                 }
             }
         });
@@ -84,7 +91,7 @@ public class fragMsg extends Fragment {
 
     // for interacting with the parent activity
     public interface msgListener{
-        public void voteOnMsg(boolean vote, Message msg);
+        public void voteOnMsg(int score, Message msg, User user);
     }
     private msgListener listener;
 }

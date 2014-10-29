@@ -160,9 +160,12 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
     }
     @Override
     public void openMsg(Message msg){
-        // create new fragment and set its challenge
+        // create new fragment
         fragMsg frag = new fragMsg();
-        // get current message
+
+        // add message to user's read list
+        user.addMsg(msg.getID());
+        // send data to fragment
         frag.setData(user, msg);
 
         // create transaction and swap new fragment in
@@ -185,22 +188,14 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
 
     // voting on a message
     @Override
-    public void voteOnMsg(boolean vote, Message msg) {
-        // update score in the user and the message
-        if (vote == true) {
-            // positive vote
-            user.changeVote(msg.getID(), 1);
-        } else {
-            // negative vote
-            user.changeVote(msg.getID(), -1);
-        }
-        msg.updateScore(vote);
+    public void voteOnMsg(int score, Message msg, User updatedUser) {
 
+        // update local data
+        user = updatedUser;
+        msg.updateScore(score);
 
-        // TODO save on database
-
-        // show feedback
-        Toast.makeText(this, "Vote saved!", Toast.LENGTH_SHORT).show();
+        // change vote on database
+        new voteonMessage().execute(msg);
     }
 
     // saving a message
@@ -219,13 +214,6 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
 
         // save the message
         new saveMessage().execute(newmsg);
-
-        // go back to the map
-        fragMap map = new fragMap();
-        map.setMsgs(messages);
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame, map);
-        fragmentTransaction.commit();
     }
 
     // location stuff
@@ -243,6 +231,7 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
     }
 
     // online database stuff
+    private class addComment extends AsyncTasck<>
     private class DownloadMessages extends AsyncTask<Void, Void, Void> {
 
         InputStream inputStream = null;
@@ -361,8 +350,50 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
         protected void onPostExecute(String result){
             super.onPostExecute(result);
             Log.d("debug", result);
+
             // show feedback
             Toast.makeText(getApplicationContext(), "Message saved!", Toast.LENGTH_SHORT).show();
+
+            // change fragment
+            openMap();
+        }
+    }
+    private class voteonMessage extends AsyncTask <Message, Void, String> {
+        @Override protected String doInBackground(Message... msg){
+            // get the message to be saved
+            Message temp = msg[0];
+
+            String response = "";
+            DefaultHttpClient client = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost("http://messageapp.netau.net/editMsg.php");
+            httpPost.addHeader("Content-Type", "application/x-www-form-urlencoded");
+            try {
+                List<NameValuePair> params = new ArrayList<NameValuePair>(5);
+                params.add(new BasicNameValuePair("ID", Integer.toString(temp.getID())));
+                params.add(new BasicNameValuePair("score", Integer.toString(temp.getScore())));
+                httpPost.setEntity(new UrlEncodedFormEntity(params));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            try {
+                HttpResponse execute = client.execute(httpPost);
+                InputStream content = execute.getEntity().getContent();
+                BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
+                String s = "";
+                while ((s = buffer.readLine()) != null){
+                    response += s;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return response;
+        }
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+            Log.d("debug", result);
+
+            // show feedback
+            Toast.makeText(getApplicationContext(), "Vote saved!", Toast.LENGTH_SHORT).show();
         }
     }
 

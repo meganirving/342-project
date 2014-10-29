@@ -8,10 +8,33 @@ import java.util.ArrayList;
 
 public class User {
     private ArrayList<Pair<Integer, Integer>> Votes;
+    private ArrayList<Integer> readMsgs;
 
     public User() {
         Votes = new ArrayList<Pair<Integer, Integer>>();
+        readMsgs = new ArrayList<Integer>();
     }
+
+    // adds a message to the read list if it's not already in it
+    public void addMsg(Integer ID)
+    {
+        if (!foundMsg(ID))
+            readMsgs.add(ID);
+    }
+    private boolean foundMsg(Integer ID)
+    {
+        // loop through
+        for (Integer id : readMsgs)
+        {
+            // return true early if found
+            if (id == ID)
+                return true;
+        }
+
+        // never found
+        return false;
+    }
+
 
     // add a vote to the list
     public void addVote(Integer ID, Integer vote) {
