@@ -163,9 +163,8 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
         // create new fragment
         fragMsg frag = new fragMsg();
 
-        // add message to user's read list
+        // update user's read list and set the fragment data
         user.addMsg(msg.getID());
-        // send data to fragment
         frag.setData(user, msg);
 
         // create transaction and swap new fragment in
@@ -186,7 +185,6 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
         fragmentTransaction.commit();
     }
 
-    // voting on a message
     @Override
     public void voteOnMsg(int score, Message msg, User updatedUser) {
 
@@ -214,6 +212,13 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
 
         // save the message
         new saveMessage().execute(newmsg);
+
+        // go back to the map
+        fragMap map = new fragMap();
+        map.setMsgs(messages);
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame, map);
+        fragmentTransaction.commit();
     }
 
     // location stuff
@@ -231,7 +236,6 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
     }
 
     // online database stuff
-    private class addComment extends AsyncTasck<>
     private class DownloadMessages extends AsyncTask<Void, Void, Void> {
 
         InputStream inputStream = null;
@@ -350,12 +354,8 @@ public class actMain extends Activity implements GooglePlayServicesClient.Connec
         protected void onPostExecute(String result){
             super.onPostExecute(result);
             Log.d("debug", result);
-
             // show feedback
             Toast.makeText(getApplicationContext(), "Message saved!", Toast.LENGTH_SHORT).show();
-
-            // change fragment
-            openMap();
         }
     }
     private class voteonMessage extends AsyncTask <Message, Void, String> {
