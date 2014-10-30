@@ -1,70 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#ffcee2ff">
-=======
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffffff"
-                android:id="@+id/relativeLayout">
->>>>>>> 80cf16ce4c678b52a40d13891a78b62c9b573a02
-
-    <ImageView
-            android:layout_width="wrap_content"
+                android:background="#ffcee2ff">
+    <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Settings"
+            android:text="NEW MESSAGE:"
             android:id="@+id/txtLabel"
             android:layout_gravity="center_horizontal"
             android:background="#ff1a42c8"
             android:typeface="monospace"
             android:textSize="30dp"
             android:textColor="#ffffffff"
-            android:gravity="center_horizontal"
-            android:paddingBottom="20dp"
-            android:paddingTop="20dp"/>
+            android:gravity="center_horizontal"/>
 
-
-
-    <View android:layout_width="325dp"
-          android:layout_height="3dip"
-          android:paddingBottom="10dip"
-          android:background="#ff000dff"
-          android:id="@+id/view2"
-          android:layout_marginTop="98dp" android:layout_below="@+id/txtLabel" android:layout_centerHorizontal="true"/>
-    <TextView
+    <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Set Radius"
-            android:id="@+id/textView"
-            android:layout_marginBottom="26dp"
-            android:textColor="#ff000000" android:layout_alignBottom="@+id/view2"
-            android:layout_alignLeft="@+id/view2"/>
-=======
             android:id="@+id/imageView"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
             android:src="@drawable/messagebg"/>
 
     <Button
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" SAVE "
+            android:text="Save"
             android:id="@+id/btnSave"
             android:layout_alignBottom="@+id/imageView"
-            android:layout_alignParentRight="true"
-            android:background="#ff646464"
-            android:textColor="#ff49c8b0"
-            android:textSize="30dp"
-            android:typeface="monospace"/>
+            android:layout_centerHorizontal="true"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -72,11 +40,5 @@
             android:id="@+id/edtMsg"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:hint="NEW MESSAGE..."
-            android:typeface="monospace"
-            android:textColor="#ff000000"
-            android:editable="true"
-            android:text="TESTMSG"/>
->>>>>>> 80cf16ce4c678b52a40d13891a78b62c9b573a02
-
+            android:hint="New Message..."/>
 </RelativeLayout>

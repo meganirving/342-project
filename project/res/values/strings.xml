@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
     <string name="app_name">.TAGIFY</string>
     <string name="action_add">Add Tag</string>
     <string name="action_sett">Settings</string>
-=======
-    <string name="app_name">Project</string>
-    <string name="action_new">New Message</string>
->>>>>>> 80cf16ce4c678b52a40d13891a78b62c9b573a02
 </resources>

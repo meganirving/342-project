@@ -34,15 +34,9 @@ public class fragNew extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.newmsg, container, false);
 
-<<<<<<< HEAD
-        // get buttons
-     /*   Button save = (Button) root.findViewById(R.id.btnSave);
-        Button cancel = (Button) root.findViewById(R.id.btnCancel);
-=======
         // get UI
         msg = (EditText) root.findViewById(R.id.edtMsg);
         Button save = (Button) root.findViewById(R.id.btnSave);
->>>>>>> 80cf16ce4c678b52a40d13891a78b62c9b573a02
 
         // set listener
         save.setOnClickListener(new View.OnClickListener() {
@@ -67,12 +61,7 @@ public class fragNew extends Fragment {
             }
         });
 
-<<<<<<< HEAD
         // set the label
-        setLabel();
-*/
-=======
->>>>>>> 80cf16ce4c678b52a40d13891a78b62c9b573a02
         return root;
     }
 
